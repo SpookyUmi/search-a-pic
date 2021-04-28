@@ -50,6 +50,7 @@ const App = () => {
           setIsOpen={setIsOpen}
           photoIndex={photoIndex}
           setPhotoIndex={setPhotoIndex}
+          search={search}
         />
         <Footer />
     </div>

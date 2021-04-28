@@ -26,7 +26,7 @@ Then, using a simple **input** on my App component, **I connected my application
 Then I **structured** my application by building all the **components** I estimated necessary. As the call to the API was implemented and functional, I didn't need to **mock** with fake data and I directly passed my **props** to the components, especially my Results component where I needed all the images received from the API. 
 
 
-I **styled** my app using **Sass** variables and nesting, and using **BEM** norm for my CSS selectors class names. I also added the **React Image Lightbox** package to make the app a little more **interactive** : you can click on a photo and it will appear bigger over the app's content. You can also pass the photos thanks to the lateral arrows. 
+I **styled** my app using **Sass** variables and nesting, and using **BEM** methodology for my CSS selectors class names. I also added the **React Image Lightbox** package to make the app a little more **interactive** : you can click on a photo and it will appear bigger over the app's content. You can also pass the photos thanks to the lateral arrows. 
 
 ## Application operation
 

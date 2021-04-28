@@ -22,14 +22,13 @@ const App = () => {
   // Image's index info for our lightbox
   const [photoIndex, setPhotoIndex] = useState(0);
 
-  // Function who calls the API of Pixabay
-
+  // useEffect hook who contains the call to the API of Pixabay
   useEffect(() => {
     async function loadImages() {
       try {
         const response = await Axios({
           method: 'GET',
-          url: `${PIXABAY_URL}&q=${search ? searchFormat(search) : '%27%27'}`
+          url: `${PIXABAY_URL}&q=${search ? searchFormat(search) : '%27%27'}&per_page=200`
         });
         if (response.status !== 200) return console.error('ERROR');
         setImages(response.data.hits);

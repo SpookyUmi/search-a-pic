@@ -2,29 +2,32 @@ import React, { useRef } from 'react';
 import { debounce } from 'lodash-es';
 import "./styles.scss";
 
-const SearchBar = ({ setSearch, search }) => {
+const SearchBar = ({ setSearch }) => {
   const textInput = useRef("");
+
+  const handleChange = (event) => {
+    setSearch(event.target.value);
+  }
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    console.log(textInput.current.value);
+    setSearch(textInput.current.value);
+  }
+
   return (
   <section className="searchbar__container">
     <form
       type="submit"
       className="searchbar__form"
-      onSubmit={(event) => {
-        event.preventDefault();
-        console.log(textInput.current.value);
-        setSearch(textInput.current.value.replace(/ /g, '&').toLowerCase());
-      }
-      }
+      onSubmit={handleSubmit}
     >
       <input
         type="text"
         className="searchbar__form__input"
         placeholder="Search..."
         ref={textInput}
-        onChange={debounce((event) => {
-          setSearch(event.target.value.replace(/ /g, '&').toLowerCase());
-        }, 3000)
-        }
+        onChange={debounce(handleChange, 3000)}
       />
     </form>
   </section>

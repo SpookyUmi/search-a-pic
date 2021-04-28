@@ -1,20 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
-import { debounce } from 'lodash-es';
-import './App.css';
+import './styles.scss';
 
-import Header from "../Header";
-import SearchBar from "../SearchBar";
-import Results from "../Results";
+import Header from '../Header';
+import SearchBar from '../SearchBar';
+import Results from '../Results';
+import Footer from '../Footer';
+
+import { searchFormat } from '../../utils/searchFormat';
 
 const PIXABAY_URL = process.env.REACT_APP_PIXABAY_URL
 
-function App() {
+const App = () => {
   // Our local state
-  // What we catch in our form input
-  const [inputValue, setInputValue] = useState("pink");
   // The user's search
-  const [search, setSearch] = useState("");
+  const [search, setSearch] = useState("pink");
   // Our array of images, send by the API
   const [images, setImages] = useState([]);
 
@@ -25,7 +25,7 @@ function App() {
       try {
         const response = await Axios({
           method: 'GET',
-          url: `${PIXABAY_URL}&q=${search ? search : '%27%27'}`
+          url: `${PIXABAY_URL}&q=${search ? searchFormat(search) : '%27%27'}`
         });
         if (response.status !== 200) return console.error('ERROR');
         setImages(response.data.hits);
@@ -35,16 +35,14 @@ function App() {
       }
     }
     loadImages();
-  }, [search, inputValue]);
+  }, [search]);
 
   return (
     <div className="App">
       <Header />
-        <input type="text" onChange={debounce((event) => {
-          setInputValue(event.target.value);
-        }, 1000)}/>
-        <SearchBar setInputValue={setInputValue} inputValue={inputValue} setSearch={setSearch} search={search} />
+        <SearchBar setSearch={setSearch} />
         <Results images={images} />
+        <Footer />
     </div>
   );
 }

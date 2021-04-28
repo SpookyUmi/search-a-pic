@@ -27,7 +27,7 @@ const SearchBar = ({ setSearch }) => {
         className="searchbar__form__input"
         placeholder="Search..."
         ref={textInput}
-        onChange={debounce(handleChange, 3000)}
+        onChange={debounce(handleChange, 1000)}
       />
     </form>
   </section>

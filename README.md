@@ -32,6 +32,6 @@ I **styled** my app using **Sass** variables and nesting, and using **BEM** meth
 
 I chose **two different ways to search photos** and by extension to perform a call to the API : 
 - The classic way with an **onSubmit** event plugged on my search Form : the form catches the input's value thanks to useRef and send it to our local state which triggers a re-render. 
-- You can also write in the input and wait for 3sec without submitting the form. Using **debounce** and **onChange**, the app will memorize your last move and send the input's value to the local state after 3 seconds. 
+- You can also write in the input and wait for 1sec without submitting the form. Using **debounce** and **onChange**, the app will memorize your last move and send the input's value to the local state after 1 second (that's comfortable especially when you're using the app on a mobile phone).
 
 I also chose to pass a **default value** to the search state, that way a call to the API is performed right after the render and the page isn't empty. I found it more interesting that way.

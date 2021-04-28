@@ -17,6 +17,10 @@ const App = () => {
   const [search, setSearch] = useState("pink");
   // Our array of images, send by the API
   const [images, setImages] = useState([]);
+  // The state of our image, open or closed
+  const [isOpen, setIsOpen] = useState(false);
+  // Image's index info for our lightbox
+  const [photoIndex, setPhotoIndex] = useState(0);
 
   // Function who calls the API of Pixabay
 
@@ -41,7 +45,13 @@ const App = () => {
     <div className="App">
       <Header />
         <SearchBar setSearch={setSearch} />
-        <Results images={images} />
+        <Results
+          images={images}
+          isOpen={isOpen}
+          setIsOpen={setIsOpen}
+          photoIndex={photoIndex}
+          setPhotoIndex={setPhotoIndex}
+        />
         <Footer />
     </div>
   );

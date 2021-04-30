@@ -12,7 +12,7 @@ const Results = ({ images, isOpen, setIsOpen, setPhotoIndex, photoIndex, search 
     {images.map((image, index) => (
       <div
         className="images__gallery__item"
-        key={image.id}
+        key={image.webformatURL + image.id + image.user_id + Math.random()}
         onClick={() => { setIsOpen(true) }}
       >
         <img

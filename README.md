@@ -38,4 +38,6 @@ I also chose to pass a **default value** to the search state, that way a call to
 
 ## Experience feedback
 
-When you reach the app page, you load 200 images in their largest version. The API's payload my app receives contains 3 different versions of the image I want to display. I choose directly the largest version, `largeImageURL` but it's not the best at all if I want to improve perf. I then decided to change it for a smaller version of the image (`previewURL` or `webFormatURL`) as the interface doesn't display the images in full size. Nevertheless, when you click on the image, the app load the largest version for you to appreciate the image's quality at its best. 
+Initially, when you reach the app page, you load 200 images in their **largest version**. The API's payload my app receives contains **3 different versions** of the image I want to display. I choose directly the largest version, `largeImageURL` but it's not the best at all if I want to improve perf. I then decided to change it for a **smaller version** of the image (`previewURL` or `webFormatURL`) as the interface doesn't display the images in full size. Nevertheless, when you click on the image, the app load the largest version for you to appreciate the image's quality at its best. 
+
+I added an **infinite scroll** using the npm package `react-infinite-scroller`. I adapted its behaviour to my app, it's not perfect but it's working great though. Feel free to send my any **feedback** on how I could improve my implementation of this functionality, I'm still learning.

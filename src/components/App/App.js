@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Axios from 'axios';
+import InfiniteScroll from 'react-infinite-scroller';
 import './styles.scss';
 
 import Header from '../Header';
@@ -21,6 +22,10 @@ const App = () => {
   const [isOpen, setIsOpen] = useState(false);
   // Image's index info for our lightbox
   const [photoIndex, setPhotoIndex] = useState(0);
+  // Page number for our results
+  const [page, setPage] = useState(1);
+
+  const loading = useRef("loading");
 
   // useEffect hook who contains the call to the API of Pixabay
   useEffect(() => {
@@ -32,7 +37,7 @@ const App = () => {
         });
         if (response.status !== 200) return console.error('ERROR');
         setImages(response.data.hits);
-        //console.log("La réponse API :", response);
+        console.log("La réponse API :", response);
       } catch (error) {
         console.log(error);
       }
@@ -40,18 +45,38 @@ const App = () => {
     loadImages();
   }, [search]);
 
+  function loadMoreImages() {
+    Axios.get(`${PIXABAY_URL}&q=${search ? searchFormat(search) : '%27%27'}&per_page=50&page=${page}`)
+    .then(
+      res => {
+        setImages([...images, ...res.data.hits]);
+        setPage(page + 1);
+      }
+    )
+  }
+
   return (
     <div className="App">
       <Header />
         <SearchBar setSearch={setSearch} />
-        <Results
-          images={images}
-          isOpen={isOpen}
-          setIsOpen={setIsOpen}
-          photoIndex={photoIndex}
-          setPhotoIndex={setPhotoIndex}
-          search={search}
-        />
+        <InfiniteScroll
+          pageStart={0}
+          loadMore={loadMoreImages}
+          hasMore={images.length >= 50 ? true : false}
+          loader={loading.current.node}
+        >
+          <Results
+            images={images}
+            isOpen={isOpen}
+            setIsOpen={setIsOpen}
+            photoIndex={photoIndex}
+            setPhotoIndex={setPhotoIndex}
+            search={search}
+          />
+        </InfiniteScroll>
+        <div className="loader" key={0} ref={loading}>{
+          images.length >= 50 ? "Loading ..." : "-"
+        }</div>
         <Footer />
     </div>
   );

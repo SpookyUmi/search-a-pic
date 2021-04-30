@@ -35,3 +35,7 @@ I chose **two different ways to search photos** and by extension to perform a ca
 - You can also write in the input and wait for 1sec without submitting the form. Using **debounce** and **onChange**, the app will memorize your last move and send the input's value to the local state after 1 second (that's comfortable especially when you're using the app on a mobile phone).
 
 I also chose to pass a **default value** to the search state, that way a call to the API is performed right after the render and the page isn't empty. I found it more interesting that way.
+
+## Experience feedback
+
+When you reach the app page, you load 200 images in their largest version. The API's payload my app receives contains 3 different versions of the image I want to display. I choose directly the largest version, `largeImageURL` but it's not the best at all if I want to improve perf. I then decided to change it for a smaller version of the image (`previewURL` or `webFormatURL`) as the interface doesn't display the images in full size. Nevertheless, when you click on the image, the app load the largest version for you to appreciate the image's quality at its best. 

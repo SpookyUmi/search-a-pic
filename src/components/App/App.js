@@ -28,11 +28,11 @@ const App = () => {
       try {
         const response = await Axios({
           method: 'GET',
-          url: `${PIXABAY_URL}&q=${search ? searchFormat(search) : '%27%27'}&per_page=200`
+          url: `${PIXABAY_URL}&q=${search ? searchFormat(search) : '%27%27'}&per_page=50`
         });
         if (response.status !== 200) return console.error('ERROR');
         setImages(response.data.hits);
-        console.log("La réponse API :", response);
+        //console.log("La réponse API :", response);
       } catch (error) {
         console.log(error);
       }

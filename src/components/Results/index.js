@@ -17,7 +17,7 @@ const Results = ({ images, isOpen, setIsOpen, setPhotoIndex, photoIndex, search 
       >
         <img
           className="pixabay__image"
-          src={image.largeImageURL}
+          src={image.webformatURL}
           alt={image.tags}
           onClick={() => { setPhotoIndex(index) }}
         />

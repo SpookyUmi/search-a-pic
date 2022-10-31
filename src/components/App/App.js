@@ -33,7 +33,7 @@ const App = () => {
       try {
         const response = await Axios({
           method: 'GET',
-          url: `${PIXABAY_URL}&q=${search ? searchFormat(search) : '%27%27'}&per_page=50`
+          url: `${PIXABAY_URL}&q=${search ? searchFormat(search) : '%27%27'}&per_page=30`
         });
         if (response.status !== 200) return console.error('ERROR');
         setImages(response.data.hits);

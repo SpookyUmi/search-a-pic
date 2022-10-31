@@ -1,4 +1,4 @@
-# Search a pic 
+# Search a pic 🔍
 
 I'm using Pixabay API for this project.
 
